@@ -1,0 +1,40 @@
+<div class="container w-50">
+    <div class="card m-3">
+        <div class="card-body">
+            <div class="row">
+                <h5 class="card-title">{{Title}}</h5>
+            </div>
+        </div>
+
+        <div class="col mx-3">
+            <form #myForm="ngForm">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="fullName">Customer Name *</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter full name"
+                            name="myControl" required [(ngModel)]="customerData.fullName" #myControl="ngModel">
+                                <div *ngIf="myControl.invalid && (myControl.dirty || myControl.touched)">
+                                    <div *ngIf="myControl.errors?.['required']" class="text-danger">
+                                      This field is required.
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" class="form-control" id="dateOfBirth" name="DOB"
+                            [(ngModel)]="customerData.dateOfBirth">
+                        </div>
+                    </div>
+                <div class="col my-2" align="end">
+                    <button type="submit" class="btn btn-primary" [disabled]="saving" (click)="!saving && InsertCustomerData(myForm)">
+                            <span *ngIf="!saving">Submit</span>
+                            <span *ngIf="saving">Submitting...</span>
+                    </button>
+                    <button type="reset"  class="btn btn-light mx-1" routerLink="/customer">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

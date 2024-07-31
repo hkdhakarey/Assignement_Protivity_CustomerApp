@@ -1,0 +1,10 @@
+.float-right{
+    float: right;
+}
+.profile-img{
+    height: 25px;
+    width: 25px;
+}
+.ml-2{
+    margin-left: 5px;
+}
