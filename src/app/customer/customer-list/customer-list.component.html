@@ -58,8 +58,10 @@
                 </li>
                   <li class="page-item" (click)="PageNo < Pages.length -1 && SetPaging(PageNo + 1)">
                     <button class="page-link">Next</button></li>
+                    <p class="mx-3 my-2">Total Record(s): {{CustomerList?.length}}</p>
                 </ul>
               </nav>
+              
         </div>
         <div class="col mx-3" *ngIf="!(CustomerList?.length > 0)">
             <hr class="w-100" />

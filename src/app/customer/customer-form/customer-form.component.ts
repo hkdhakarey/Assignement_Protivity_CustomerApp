@@ -15,6 +15,7 @@ export class CustomerFormComponent implements OnInit {
   constructor(private _customerService: CustomerService, 
     private router: Router, private route: ActivatedRoute){
     this.customerData = new Customer();
+    this.customerData.dateOfBirth = new Date().toISOString().split('T')[0];
     this.saving = false;
   }
   ngOnInit() {
