@@ -14,6 +14,7 @@ export class CustomerListComponent implements OnInit {
   PageSize = 6;
   Pages: number[];
   AgeValue;
+  GridView: boolean = true;
   constructor(private _customerService: CustomerService, private router: Router){
     this.CustomerList = [];
     this.Pages = [];

@@ -12,7 +12,12 @@
             </div>
             <hr />
             <form class="row mt-2">
-                <div class="col-sm-8"></div>
+                <div class="col-sm-8">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name ="cardView" [(ngModel)]="GridView">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Grid View</label>
+                      </div>
+                </div>
                 <div class="col-sm-4 d-flex">
                     <input type="number" min="1" max="100" maxlength="3" class="form-control w-75" 
                     placeholder="Search Customer by Age" [(ngModel)]="AgeValue" name="age" *ngIf="CustomerList.length > 0" />
@@ -28,18 +33,18 @@
         </div>
 
         <div class="col mx-3" *ngIf="CustomerList?.length > 0">
-            <table class="table table-primary table-striped-columns responsive">
+            <table class="table table-primary table-striped-columns responsive" *ngIf="GridView else cardView">
                 <thead>
                     <tr>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Date of Birth</th>
-                        <th scope="col">Profile Image</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="text-secondary">Customer Name</th>
+                        <th scope="col" class="text-secondary">Date of Birth</th>
+                        <th scope="col" class="text-secondary">Profile Image</th>
+                        <th scope="col" class="text-secondary">Action</th>
                     </tr>
                 </thead>
                 <tr class="table-primary" *ngFor="let item of SelectedPageCustomerList">
-                    <td class="table-primary">{{item.fullName}}</td>
-                    <td class="table-primary">{{item.dateOfBirth}}</td>
+                    <td class="table-primary text-success">{{item.fullName}}</td>
+                    <td class="table-primary text-success">{{item.dateOfBirth}}</td>
                     <td class="table-primary">
                         <div *ngIf="item.profileImage?.length > 0 else elseBlock" style="background: transparent;">
                         <img class="profile-img" [src]="getSvgDataUrl(item.profileImage)" />
@@ -48,7 +53,34 @@
                     </td>
                     <td><button type="button" class="btn btn-link" (click)="EditCustomer(item.customerId)">Edit</button></td>
                 </tr>
-            </table>  
+            </table> 
+            <ng-template #cardView>
+                <div class="row">
+                    <div class="my-1 col-sm-6" *ngFor="let item of SelectedPageCustomerList">
+                        <div class="card  p-2 ">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <span class="tex-secondary">Customer Name</span>
+                                <span class="d-flex">
+                                    <strong><p class="text-success">{{item.fullName}}</p></strong>
+                                    <div class="mx-1" *ngIf="item.profileImage?.length > 0" style="background: transparent;">
+                                        <img class="profile-img" [src]="getSvgDataUrl(item.profileImage)" />
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="tex-secondary">Date of Birth</span>
+                                <strong><p class="text-success">{{item.dateOfBirth}}</p></strong>
+                            </div>
+                            <div class="col-sm-5">
+                                <button type="button" class="btn btn-link float-right" (click)="EditCustomer(item.customerId)">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </ng-template> 
+            <hr />
             <div class="row">
                 <div class="col-sm-6">
                     <nav aria-label="Page navigation example">

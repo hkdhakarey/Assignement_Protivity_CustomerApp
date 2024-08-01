@@ -8,7 +8,19 @@
 <hr />
         <div class="col mx-3">
             <form #myForm="ngForm">
-                    <div class="col-sm-12">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter full name"
+                    name="myControl" required [(ngModel)]="customerData.fullName" #myControl="ngModel"
+                    [ngClass]="(myControl.invalid && (myControl.dirty || myControl.touched) && myControl.errors?.['required'])?'is-invalid':''">
+                    <label for="fullName">Customer Name *</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="dateOfBirth" placeholder="Date of Birth"
+                    name="DOB"
+                    [(ngModel)]="customerData.dateOfBirth">
+                    <label for="dateOfBirth">Date of Birth</label>
+                  </div>
+                    <!-- <div class="col-sm-12">
                         <div class="form-group">
                             <label for="fullName">Customer Name *</label>
                             <input type="text" class="form-control" id="fullName" placeholder="Enter full name"
@@ -26,9 +38,9 @@
                             <input type="date" class="form-control" id="dateOfBirth" name="DOB"
                             [(ngModel)]="customerData.dateOfBirth">
                         </div>
-                    </div>
+                    </div> -->
                 <div class="col my-2" align="end">
-                    <button type="submit" class="btn btn-primary" [disabled]="saving" (click)="!saving && InsertCustomerData(myForm)">
+                    <button type="submit" class="btn btn-primary" [disabled]="saving" (click)="!saving && InsertCustomerData(myForm);">
                             <span *ngIf="!saving">Submit</span>
                             <span *ngIf="saving">Submitting...</span>
                     </button>

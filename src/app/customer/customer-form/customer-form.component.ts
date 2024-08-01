@@ -34,7 +34,7 @@ export class CustomerFormComponent implements OnInit {
     });
   }
   InsertCustomerData(ngForm: NgForm){
-    debugger
+    ngForm.controls['myControl'].markAllAsTouched();
     if(ngForm.valid){
       this.saving = true;
     if(!(this.customerData.customerId?.length > 0)){
