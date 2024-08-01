@@ -46,7 +46,8 @@ export class CustomerFormComponent implements OnInit {
           this.router.navigate(['/customer']);
         }
       }, error =>{
-        alert(error.message)
+        alert(error.message);
+        this.saving = false;
       });
     }
     else{
@@ -56,7 +57,8 @@ export class CustomerFormComponent implements OnInit {
           this.router.navigate(['/customer']);
         }
       },error =>{
-        alert(error.message)
+        alert(error.message);
+        this.saving = false;
       });
     }
   }
