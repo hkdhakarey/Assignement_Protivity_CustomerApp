@@ -31,6 +31,8 @@ export class CustomerFormComponent implements OnInit {
   GetCustomerById(id){
     this._customerService.getCustomerById(id).subscribe(res =>{
       this.customerData = res;
+    }, error =>{
+      alert(error.message)
     });
   }
   InsertCustomerData(ngForm: NgForm){
@@ -43,6 +45,8 @@ export class CustomerFormComponent implements OnInit {
           alert("Customer Created Successfully.");
           this.router.navigate(['/customer']);
         }
+      }, error =>{
+        alert(error.message)
       });
     }
     else{
@@ -51,6 +55,8 @@ export class CustomerFormComponent implements OnInit {
           alert("Customer Updated Successfully.");
           this.router.navigate(['/customer']);
         }
+      },error =>{
+        alert(error.message)
       });
     }
   }

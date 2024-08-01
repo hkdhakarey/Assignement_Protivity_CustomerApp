@@ -27,6 +27,8 @@ export class CustomerListComponent implements OnInit {
     this._customerService.getAllCustomer().subscribe(res =>{
       this.CustomerList = res;
       this.PagingSetup();
+    }, error =>{
+      alert(error.message)
     });
   }
   PagingSetup(){
@@ -45,6 +47,8 @@ export class CustomerListComponent implements OnInit {
       this._customerService.getCustomersByAge(this.AgeValue).subscribe(res =>{
         this.CustomerList = res;
         this.PagingSetup();
+      }, error =>{
+        alert(error.message)
       });
     }
     else{
